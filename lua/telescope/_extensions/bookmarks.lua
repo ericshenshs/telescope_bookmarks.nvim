@@ -10,7 +10,7 @@ local function bookmarks_picker(opts)
   }, opts or {})
 
   -- Define a new picker bookmarks
-  return find_files(opts):find()
+  return find_files(opts)
 end
 
 return require("telescope").register_extension {
