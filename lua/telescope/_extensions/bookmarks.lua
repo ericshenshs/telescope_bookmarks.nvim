@@ -58,6 +58,18 @@ local function bookmarks_picker(opts)
       map("n", "d", delete_file)
       map("n", "s", save_bookmarks)
       map("n", "l", load_bookmarks)
+      -- load when select
+      actions.select_default:replace(function()
+        -- load the bookmark without asking
+        local entry = action_state.get_selected_entry()
+        local file_path = entry.path or entry.filename
+        actions.close(prompt_bufnr)
+        print("Loaded " .. file_path)
+        vim.cmd('BookmarkLoad ' .. file_path)
+        -- refresh the quickfix
+        vim.cmd('BookmarkShowAll')
+        vim.cmd('BookmarkShowAll')
+      end)
       return true
     end
   }, opts or {})
