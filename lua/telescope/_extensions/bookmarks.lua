@@ -5,7 +5,7 @@ local previewers = require("telescope.previewers")
 
 local function bookmarks_picker()
   -- Define a new picker bookmarks
-  pickers.new({}, {
+  return pickers.new({}, {
     prompt_title = "Vim Bookmarks",
     finder = finders.new_table({
       results = { "Option 1", "Option 2", "Option 3" },
@@ -21,6 +21,6 @@ end
 
 return require("telescope").register_extension {
   exports = {
-    bookmarks = require("bookmarks").bookmarks_picker,
+    bookmarks = bookmarks_picker,
   },
 }
