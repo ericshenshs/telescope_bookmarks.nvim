@@ -1,2 +1,13 @@
 # telescope_bookmarks.nvim
-I try to create a picker extension for telescope called bookmarks to manage the vim-bookmarks files for quick switch, save, load and management. 
+
+We create a picker extension for telescope called `bookmarks`` to manage the vim-bookmarks files for quick switch (load) (`l` or `<CR>`), save (`s`), delete (`d`) and edit (`o`).
+
+## Installation
+Simply
+a) add `{ "ericshenshs/telescope_bookmarks.nvim" }` to dependencies of Telescope
+b) `telescope.load_extension('bookmarks')` during setup of Telescope
+c) pass a cwd of bookmark files to Telescope by `:Telescope bookmarks cwd=`
+
+Note that
+A) this plugin is to help `{MattesGroeger/vim-bookmarks}` using Telescope.
+B) press `?` in normal mode of Telescope, we can see shortcuts here.
