@@ -48,6 +48,13 @@ local function save_bookmarks(prompt_bufnr)
   end
 end
 
+local function edit_bookmarks(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local file_path = entry.path or entry.filename
+  vim.cmd('edit ' .. file_path)
+  actions.close(prompt_bufnr)
+end
+
 local function bookmarks_picker(opts)
   -- Inherits the find_files picker.
   -- with parameter overrides.
@@ -58,6 +65,7 @@ local function bookmarks_picker(opts)
       map("n", "d", delete_file)
       map("n", "s", save_bookmarks)
       map("n", "l", load_bookmarks)
+      map("n", "o", edit_bookmarks)
       -- load when select
       actions.select_default:replace(function()
         -- load the bookmark without asking
