@@ -60,7 +60,13 @@ local function rename_sessions(prompt_bufnr)
   if confirm:lower() == "y" then
     local new_filename = vim.fn.input("New name is? : ")
     local new_path = directory .. "/" .. new_filename
-    print(new_path)
+    vim.uv.fs_rename(file_path, new_path, function(err)
+      if err then
+        print("Error renaming file:", err)
+      else
+        print("File renamed successfully to " .. new_path)
+      end
+    end)
   else
     print("Canceled rename")
   end
