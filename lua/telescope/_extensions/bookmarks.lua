@@ -2,21 +2,15 @@ local pickers = require("telescope.pickers")
 local finders = require("telescope.finders")
 local sorters = require("telescope.sorters")
 local previewers = require("telescope.previewers")
+local find_files = require('telescope.builtin').find_files
 
-local function bookmarks_picker()
+local function bookmarks_picker(opts)
+  opts = vim.tbl_deep_extend("force", {
+    prompt_title = "Bookmarks",
+  }, opts or {})
+
   -- Define a new picker bookmarks
-  return pickers.new({}, {
-    prompt_title = "Vim Bookmarks",
-    finder = finders.new_table({
-      results = { "Option 1", "Option 2", "Option 3" },
-    }),
-    sorter = sorters.get_generic_fuzzy_sorter(),
-    previewer = previewers.new_termopen_previewer({
-      get_command = function(entry)
-        return { "echo", entry.value }
-      end,
-    }),
-  }):find()
+  return find_files(opts):find()
 end
 
 return require("telescope").register_extension {
