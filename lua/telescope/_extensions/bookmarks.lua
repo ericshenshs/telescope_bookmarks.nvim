@@ -24,9 +24,9 @@ local function load_bookmarks(prompt_bufnr)
   local file_path = entry.path or entry.filename
   local confirm = vim.fn.input("Load Bookmarks in " .. file_path .. "? (y/n): ")
   if confirm:lower() == "y" then
-    vim.cmd('BookmarkLoad ' .. file_path)
     actions.close(prompt_bufnr)
     print("Loaded " .. file_path)
+    vim.cmd('BookmarkLoad ' .. file_path)
   else
     print("Canceled load")
   end
