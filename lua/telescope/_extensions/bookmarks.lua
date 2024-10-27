@@ -35,26 +35,6 @@ local function load_bookmarks(prompt_bufnr)
   end
 end
 
-local function save_bookmarks(prompt_bufnr)
-  local entry = action_state.get_selected_entry()
-  local file_path = entry.path or entry.filename
-  local confirm = vim.fn.input("Save Bookmarks to " .. file_path .. "? (y/n): ")
-  if confirm:lower() == "y" then
-    vim.cmd('BookmarkSave ' .. file_path)
-    actions.close(prompt_bufnr)
-    print("Saved to " .. file_path)
-  else
-    print("Canceled save")
-  end
-end
-
-local function edit_bookmarks(prompt_bufnr)
-  local entry = action_state.get_selected_entry()
-  local file_path = entry.path or entry.filename
-  actions.close(prompt_bufnr)
-  vim.cmd('edit ' .. file_path)
-end
-
 local function rename_bookmarks(prompt_bufnr)
   local entry = action_state.get_selected_entry()
   local file_path = entry.path or entry.filename
@@ -73,6 +53,27 @@ local function rename_bookmarks(prompt_bufnr)
   else
     print("Canceled rename")
   end
+end
+
+local function save_bookmarks(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local file_path = entry.path or entry.filename
+  local confirm = vim.fn.input("Save Bookmarks to " .. file_path .. "? (y/n): ")
+  if confirm:lower() == "y" then
+    vim.cmd('BookmarkSave ' .. file_path)
+    print("Saved to " .. file_path)
+    rename_bookmarks(prompt_bufnr)
+    actions.close(prompt_bufnr)
+  else
+    print("Canceled save")
+  end
+end
+
+local function edit_bookmarks(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local file_path = entry.path or entry.filename
+  actions.close(prompt_bufnr)
+  vim.cmd('edit ' .. file_path)
 end
 
 local function bookmarks_picker(opts)

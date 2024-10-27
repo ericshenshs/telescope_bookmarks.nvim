@@ -32,26 +32,6 @@ local function load_sessions(prompt_bufnr)
   end
 end
 
-local function save_sessions(prompt_bufnr)
-  local entry = action_state.get_selected_entry()
-  local file_path = entry.path or entry.filename
-  local confirm = vim.fn.input("Save sessions to " .. file_path .. "? (y/n): ")
-  if confirm:lower() == "y" then
-    vim.cmd('mksession! ' .. file_path)
-    actions.close(prompt_bufnr)
-    print("Saved to " .. file_path)
-  else
-    print("Canceled save")
-  end
-end
-
-local function edit_sessions(prompt_bufnr)
-  local entry = action_state.get_selected_entry()
-  local file_path = entry.path or entry.filename
-  actions.close(prompt_bufnr)
-  vim.cmd('edit ' .. file_path)
-end
-
 local function rename_sessions(prompt_bufnr)
   local entry = action_state.get_selected_entry()
   local file_path = entry.path or entry.filename
@@ -70,6 +50,27 @@ local function rename_sessions(prompt_bufnr)
   else
     print("Canceled rename")
   end
+end
+
+local function save_sessions(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local file_path = entry.path or entry.filename
+  local confirm = vim.fn.input("Save sessions to " .. file_path .. "? (y/n): ")
+  if confirm:lower() == "y" then
+    vim.cmd('mksession! ' .. file_path)
+    print("Saved to " .. file_path)
+    rename_sessions(prompt_bufnr)
+    actions.close(prompt_bufnr)
+  else
+    print("Canceled save")
+  end
+end
+
+local function edit_sessions(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local file_path = entry.path or entry.filename
+  actions.close(prompt_bufnr)
+  vim.cmd('edit ' .. file_path)
 end
 
 local function sessions_picker(opts)
