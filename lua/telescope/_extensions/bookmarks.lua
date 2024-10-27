@@ -51,8 +51,8 @@ end
 local function edit_bookmarks(prompt_bufnr)
   local entry = action_state.get_selected_entry()
   local file_path = entry.path or entry.filename
-  vim.cmd('edit ' .. file_path)
   actions.close(prompt_bufnr)
+  vim.cmd('edit ' .. file_path)
 end
 
 local function bookmarks_picker(opts)
