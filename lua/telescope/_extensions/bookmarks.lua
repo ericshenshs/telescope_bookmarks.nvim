@@ -50,6 +50,7 @@ local function rename_bookmarks(prompt_bufnr)
         print("File renamed successfully to " .. new_path)
       end
     end)
+    actions.close(prompt_bufnr)
   else
     print("Canceled rename")
   end

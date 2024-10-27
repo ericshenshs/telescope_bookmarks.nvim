@@ -47,6 +47,7 @@ local function rename_sessions(prompt_bufnr)
         print("File renamed successfully to " .. new_path)
       end
     end)
+    actions.close(prompt_bufnr)
   else
     print("Canceled rename")
   end
