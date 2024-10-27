@@ -52,6 +52,20 @@ local function edit_sessions(prompt_bufnr)
   vim.cmd('edit ' .. file_path)
 end
 
+local function rename_sessions(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local file_path = entry.path or entry.filename
+  local directory = vim.fn.fnamemodify(file_path, ":h")
+  local confirm = vim.fn.input("Rename sessions " .. file_path .. "? (y/n): ")
+  if confirm:lower() == "y" then
+    local new_filename = vim.fn.input("New name is? : ")
+    local new_path = directory .. "/" .. new_filename
+    print(new_path)
+  else
+    print("Canceled rename")
+  end
+end
+
 local function sessions_picker(opts)
   -- Inherits the find_files picker.
   -- with parameter overrides.
@@ -62,6 +76,7 @@ local function sessions_picker(opts)
       map("n", "d", delete_file)
       map("n", "s", save_sessions)
       map("n", "l", load_sessions)
+      map("n", "r", rename_sessions)
       map("n", "o", edit_sessions)
       -- load when select
       actions.select_default:replace(function()
