@@ -11,3 +11,9 @@ c) pass a cwd of bookmark files to Telescope by `:Telescope bookmarks cwd=`
 Note that
 A) this plugin is to help `{MattesGroeger/vim-bookmarks}` using Telescope.
 B) press `?` in normal mode of Telescope, we can see shortcuts here.
+
+## Sessions
+
+The picker `sessions` is similar to `bookmarks` but using `mks` and `source` to Save and Load sessions.
+
+Both the pickers `bookmarks` and `sessions` are duplicates of `find_files` but with more normal mode keymaps `sdol` here.
