@@ -27,6 +27,9 @@ local function load_bookmarks(prompt_bufnr)
     actions.close(prompt_bufnr)
     print("Loaded " .. file_path)
     vim.cmd('BookmarkLoad ' .. file_path)
+    -- refresh the quickfix
+    vim.cmd('BookmarkShowAll')
+    vim.cmd('BookmarkShowAll')
   else
     print("Canceled load")
   end
