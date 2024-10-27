@@ -21,6 +21,6 @@ end
 
 return require("telescope").register_extension {
   exports = {
-    bookmarks = bookmarks_picker,
+    bookmarks = require("bookmarks").bookmarks_picker,
   },
 }
