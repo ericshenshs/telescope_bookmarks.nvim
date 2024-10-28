@@ -35,6 +35,21 @@ local function load_bookmarks(prompt_bufnr)
   end
 end
 
+local function create_bookmarks(prompt_bufnr)
+  local confirm = vim.fn.input("Create bookmarks? (y/n): ")
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local directory = picker.cwd
+  if confirm:lower() == "y" then
+    local new_filename = vim.fn.input("New name is? : ")
+    local file_path = directory .. "/" .. new_filename
+    vim.cmd('BookmarkSave ' .. file_path)
+    print("Saved to " .. file_path)
+    actions.close(prompt_bufnr)
+  else
+    print("Canceled create")
+  end
+end
+
 local function rename_bookmarks(prompt_bufnr)
   local entry = action_state.get_selected_entry()
   local file_path = entry.path or entry.filename
@@ -89,6 +104,7 @@ local function bookmarks_picker(opts)
       map("n", "l", load_bookmarks)
       map("n", "o", edit_bookmarks)
       map("n", "r", rename_bookmarks)
+      map("n", "c", create_bookmarks)
       -- load when select
       actions.select_default:replace(function()
         -- load the bookmark without asking
