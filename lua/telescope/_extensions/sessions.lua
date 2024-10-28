@@ -50,9 +50,7 @@ local function create_sessions(prompt_bufnr)
     for key, value in pairs(picker.finder) do
       print(key, value)
     end
-    picker:refresh(finders.new_oneshot_job(
-      picker.finder.cmd,
-      { entry_maker = picker.finder.entry_maker }), { reset_prompt = true })
+    picker:refresh(picker.finder, { reset_prompt = true })
   else
     print("Canceled create")
   end
