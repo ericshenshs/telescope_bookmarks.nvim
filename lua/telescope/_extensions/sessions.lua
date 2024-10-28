@@ -97,7 +97,6 @@ local function sessions_picker(opts)
   -- with parameter overrides.
   opts = vim.tbl_deep_extend("force", {
     prompt_title = "sessions",
-    previewer = require('telescope.previewers').cat.new,
     attach_mappings = function(prompt_bufnr, map)
       -- Custom keymap: Open URL in browser
       map("n", "d", delete_file)
