@@ -8,12 +8,13 @@ local find_files = require('telescope.builtin').find_files
 
 local function delete_file(prompt_bufnr)
   local entry = action_state.get_selected_entry()
+  local picker = action_state.get_current_picker(prompt_bufnr)
   local file_path = entry.path or entry.filename
   local confirm = vim.fn.input("Delete " .. file_path .. "? (y/n): ")
   if confirm:lower() == "y" then
     vim.fn.delete(file_path)
-    -- actions.close(prompt_bufnr)
     print("Deleted " .. file_path)
+    picker:refresh(picker.finder, { reset_prompt = true })
   else
     print("Canceled deletion")
   end
@@ -44,7 +45,7 @@ local function create_bookmarks(prompt_bufnr)
     local file_path = directory .. "/" .. new_filename
     vim.cmd('BookmarkSave ' .. file_path)
     print("Saved to " .. file_path)
-    actions.close(prompt_bufnr)
+    picker:refresh(picker.finder, { reset_prompt = true })
   else
     print("Canceled create")
   end
@@ -53,6 +54,7 @@ end
 local function rename_bookmarks(prompt_bufnr)
   local entry = action_state.get_selected_entry()
   local file_path = entry.path or entry.filename
+  local picker = action_state.get_current_picker(prompt_bufnr)
   local directory = vim.fn.fnamemodify(file_path, ":h")
   local confirm = vim.fn.input("Rename bookmarks " .. file_path .. "? (y/n): ")
   if confirm:lower() == "y" then
@@ -65,7 +67,7 @@ local function rename_bookmarks(prompt_bufnr)
         print("File renamed successfully to " .. new_path)
       end
     end)
-    actions.close(prompt_bufnr)
+    picker:refresh(picker.finder, { reset_prompt = true })
   else
     print("Canceled rename")
   end
@@ -73,13 +75,14 @@ end
 
 local function save_bookmarks(prompt_bufnr)
   local entry = action_state.get_selected_entry()
+  local picker = action_state.get_current_picker(prompt_bufnr)
   local file_path = entry.path or entry.filename
   local confirm = vim.fn.input("Save Bookmarks to " .. file_path .. "? (y/n): ")
   if confirm:lower() == "y" then
     vim.cmd('BookmarkSave ' .. file_path)
     print("Saved to " .. file_path)
     rename_bookmarks(prompt_bufnr)
-    actions.close(prompt_bufnr)
+    picker:refresh(picker.finder, { reset_prompt = true })
   else
     print("Canceled save")
   end

@@ -42,14 +42,6 @@ local function create_sessions(prompt_bufnr)
     local file_path = directory .. "/" .. new_filename
     vim.cmd('mksession! ' .. file_path)
     print("Saved to " .. file_path)
-    print(picker)
-    for key, value in pairs(picker) do
-      print(key, value)
-    end
-    print(picker.finder)
-    for key, value in pairs(picker.finder) do
-      print(key, value)
-    end
     picker:refresh(picker.finder, { reset_prompt = true })
   else
     print("Canceled create")
