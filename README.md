@@ -77,6 +77,10 @@ vim.api.nvim_set_keymap(
 
 A) press `?` in normal mode of Telescope, we can see the keymaps here.
 
+## Tips
+
+a) rename bookmarks with format `20250323_<name>_revision` to sort the bookmarks and doc the commit to check in.
+
 ## (Additional)(Future Work) Sessions
 
 The picker `sessions` is similar to `bookmarks` but using `mks` and `source` to Save and Load sessions.
