@@ -1,8 +1,5 @@
 # telescope_bookmarks.nvim
 
-<!-- START doctoc -->
-<!-- END doctoc -->
-
 ## What is `telescope_bookmarks.nvim`?
 
 `telescope_bookmarks.nvim` is a telescope picker extension (`bookmarks`) that
@@ -19,6 +16,9 @@ b) `s`
 c) `d`  
 d) `o`  
 .
+
+<!-- START doctoc -->
+<!-- END doctoc -->
 
 ## Install
 
