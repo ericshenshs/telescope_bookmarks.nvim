@@ -10,11 +10,15 @@ a) load
 b) save  
 c) delete  
 d) edit  
+e) rename  
+f) create  
 a `bm`(`vim-bookmarks`) file by pressing  
 a) `l`, `<CR>`  
 b) `s`  
 c) `d`  
 d) `o`  
+e) `r`  
+f) `c`  
 .
 
 <!-- START doctoc -->
