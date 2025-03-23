@@ -7,14 +7,14 @@ helps manage the `vim-bookmarks` bookmark files.
 
 With this extension, we can  
 a) load  
-b) save  
+b) save (force save)  
 c) delete  
 d) edit  
 e) rename  
 f) create  
 a `bm`(`vim-bookmarks`) file by pressing  
 a) `l`, `<CR>`  
-b) `s`  
+b) `s` (`S`)  
 c) `d`  
 d) `o`  
 e) `r`  

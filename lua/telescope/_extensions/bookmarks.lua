@@ -88,6 +88,15 @@ local function save_bookmarks(prompt_bufnr)
   end
 end
 
+local function save_bookmarks_force(prompt_bufnr)
+  local entry = action_state.get_selected_entry()
+  local picker = action_state.get_current_picker(prompt_bufnr)
+  local file_path = entry.path or entry.filename
+  vim.cmd('BookmarkSave ' .. file_path)
+  print("Saved to " .. file_path)
+  picker:refresh(picker.finder, { reset_prompt = true })
+end
+
 local function edit_bookmarks(prompt_bufnr)
   local entry = action_state.get_selected_entry()
   local file_path = entry.path or entry.filename
@@ -104,6 +113,7 @@ local function bookmarks_picker(opts)
       -- Custom keymap: Open URL in browser
       map("n", "d", delete_file)
       map("n", "s", save_bookmarks)
+      map("n", "S", save_bookmarks_force)
       map("n", "l", load_bookmarks)
       map("n", "o", edit_bookmarks)
       map("n", "r", rename_bookmarks)
