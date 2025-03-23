@@ -1,5 +1,10 @@
 # telescope_bookmarks.nvim
 
+<!-- START doctoc -->
+<!-- END doctoc -->
+
+## What is `telescope_bookmarks.nvim`?
+
 We create a picker extension for telescope called `bookmarks`` to manage the vim-bookmarks files for quick switch (load) (`l` or `<CR>`), save (`s`), delete (`d`) and edit (`o`).
 
 ## Installation
